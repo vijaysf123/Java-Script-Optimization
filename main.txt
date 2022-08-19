@@ -1,0 +1,354 @@
+    NOTE-1 : We use querySelectorAll for selecting muliple elements , with for loop
+            jab bhi baat multiple elements ko ek sath select karne ki baat aayegi to hame querySelectorAll ka use for loop ke sath karna hoga.
+
+    
+    NOTE-2 : two programms which are written below will work exactly same. No need of consfusion.
+
+       A) let anchorElement = document.querySelectorAll("[active]")
+          for (var elements of anchorElement){
+          console.log(elements.innerText);
+          }
+
+       B) let anchorElement = document.querySelectorAll("[active]")
+          for(var i=0; i < anchorElement.length ; i++){
+          console.log(anchorElement[i].innerHTML)
+         }
+
+
+1. Selecting class inside the class
+        let elements = document.querySelectorAll(".parentClass > .child")
+
+2. Use of + 
+      This the method to select a tag which has not given any class.
+
+       <div>
+        <h1>Header 1</h1>
+        <h2>Header 2</h2>
+        <div>Header 3</div>
+        <h4>Header 4</h4>
+      </div>
+      
+      select the h4 after div tag , because there is no any class to this =>
+     
+    let elements = document.querySelectorAll("div + h4")
+
+
+3.selecting first and last child   
+     keyword -: :first-child
+     keyword -: :last-child
+
+      <div>
+        <h1>Header 1</h1>
+        <h1>Header 2</h1>
+        <h1>Header 3</h1>
+        <h1>Header 4</h1>
+      </div>
+
+    let elements = document.querySelectorAll("p:first-child")
+    let elements = document.querySelectorAll("p:last-child")
+
+
+4. Selecting the element from the top and last
+     from top the keyword= :nth-child()
+     from last keyword= :nth-last-child()
+
+    <div>
+        <h1>Header 1</h1>
+        <h1>ok 2</h1>
+        <h1>Header 3</h1>
+        <h1>Header 4</h1>
+      </div>
+
+    let elements = document.querySelectorAll("p:nth-child(2)") // ok
+    let elements = document.querySelectorAll("p:nth-last-child(3)") // ok
+
+
+5. Selecting the multiple element from the given
+
+        <h1>Header 1</h1>
+        <div>ok 2</div>
+        <p>Header 3</p>
+        <p>Header 4</p>
+
+     let elements = document.querySelectorAll("div , p") 
+
+
+6. SELECTING MULTIPLE ELEMENT 
+    querySelectorAll() => div and p seperated
+
+
+    <h1>Header 1</h1>
+    <p>Paragraph 1</p>
+    <div>Div 1</div>
+    <p>Paragraph 2</p>
+
+    let elements = document.querySelectorAll("div , p")
+        for (let element of elements){
+            console.log(element.innerHTML)
+        }
+
+    Output
+        "Paragraph 1"
+        "Div 1"
+        "Paragraph 2"
+
+
+7. How to select multiple elements inside of elements?
+       div and p are not seperated => p is inside div
+
+    <div>
+     <section>
+      <p>Paragraph 1</p>
+     </section>
+      <p>Paragraph 2</p>
+    </div>
+
+     let paragraphsInsideDivs = document.querySelectorAll("div > p");
+     for(var elements of paragraphsInsideDivs){
+     console.log(elements.innerText);
+}
+
+
+8. Use of ~ instead of + =>
+
+   + is used to select a specific element , but ~ is used to select muliple specific element because we don't want rewrite + + again.
+   keyword = "~"
+   ex => Select all the p element after h2
+
+      <div>
+        <h1>Hey</h1>
+        <p>Paragraph 1</p>
+        <h2>Ram</h2>
+        <p>Paragraph 2</p>
+        <p>Paragraph 3</p>
+      </div>   
+
+
+      let pafterh2 = document.querySelectorAll("h2 ~ p")  => {h2 ~ p means => h2 ke bad ke sare p }
+                for(elements of pafterh2){
+                    console.log(elements.innerHTML)
+                }
+    
+    console : 
+              Paragraph 2
+              Paragraph 3
+
+
+9. select multiple elements containing specific attributes?
+
+     <a>Anchor 1</a>
+     <a active>Anchor 2</a>
+     <a active>Anchor 3</a>
+
+     JavaScript
+     
+     let elementsWithActiveAttribute = document.querySelectorAll("[active]");
+     for (var elements of elementsWithActiveAttribute){
+     console.log(elements.innerText);
+    }
+
+     Console
+   
+    "Anchor 2"
+    "Anchor 3"
+
+
+10. select multiple elements containing attributes with specific values?
+
+    HTML
+
+    <a target="">Anchor 1</a>
+    <a target="_blank">Anchor 2</a>
+    <a>Anchor 3</a>
+
+    JavaScript
+
+    let elementsWithTargetBlank = document.querySelectorAll("[target=_blank]");
+    for(var elements of elementsWithTargetBlank){
+    console.log(elements.innerText);
+   }
+  
+   Console
+  
+  "Anchor 2"
+
+
+11.  select multiple elements with an attribute value starting with a specific word and hyphen?
+       {subtitle, sub , sub-heading}
+
+       <h2 title="subtitle">Header 1</h2>
+       <h2 title="sub">Header 2</h2>
+       <h2 title="sub-title">Header 3</h2>
+
+       let elementsWithSubOrHyphen = document.querySelectorAll("[title|=sub]");
+       for (var elements of elementsWithSubOrHyphen){
+         console.log(elements.innerText);
+       }
+       
+       Console
+
+       "Header 2"
+       "Header 3"
+
+
+12. select multiple elements with a class that contain a specific word?
+     I am going to select div with specific element.
+     Keyword -: {*=}
+
+     <div class="divElement">Div 1</div>
+     <p class="divElement">Paragraph 1</p>
+     <div class="div_Element"> Div 2</div>
+     <h2 class="div_Element"> Div 2 heading</h2>
+     <div class="div">Div 3</div>
+     <div class="div2Element">Div 4</div>
+
+    <script>
+
+        let elementsWithSubOrHyphen = document.querySelectorAll('div[class*="Element"]');
+        for (var elements of elementsWithSubOrHyphen) {
+            console.log(elements.innerText);
+        }
+
+    Output:
+     Div 1
+     Div 2
+     Div 4
+
+
+13. select multiple elements with an attribute value starting with a specific word?
+     Element strting with specific word => ex: all the word starting with same !
+     Keyword -: {^=}
+
+     <h1 title="subtitle">Header 1</h1>
+     <h2 title="subtitle">Header 2</h2>
+     <h2 title="sub">Header 3</h2>
+     <h2 title="sub-title">Header 4</h2>
+
+    Script :
+    
+    let startEle = document.querySelectorAll("h2[title ^= sub]")
+    for(var elements of startEle){
+        console.log(elements.innerText);
+    }
+
+    Console:
+    
+     Header 2
+     Header 3
+     Header 4
+
+
+14. select all checked input elements and select all disabled input fields?
+
+    keyword = input:checked
+    keyword = input:disabled
+    keyword = input:enabled
+    keyword = input:optional   // no 'required' keyword there
+    keyword = input:required  //if there is required keyword in input
+
+    Note : Jism disabled nahi likha hoga vo sare enabled mane jayenge.
+
+    <input type="checkbox" checked="checked" value="male">Male<br>
+    <input type="checkbox" checked="checked" value="female">Female<br>
+    <input type="checkbox" value="other">Other<br>
+    <input type="checkbox" disabled="disabled" value="other">Other
+
+
+    script:
+        
+        let inputEle = document.querySelectorAll("input:checked")
+        for(var elements of inputEle){
+            console.log(elements.value);
+        }
+
+    Console : 
+          male
+          Female
+
+
+15. select multiple elements with an attribute value ENDING with a specific word? (V.V.Important)
+        Keyword : [href $= .....]
+         
+        <a href="files.pdf"></a>
+        <a href="email.pdf"></a>
+        <a href="https://google.com"></a>
+        <a href="https://amazon.com"></a>
+        <a href="rev.pdf"></a>
+
+    <script>
+        let pdfFiles = document.querySelectorAll("[href $= pdf]")
+        for(var pdf of pdfFiles){
+            console.log(pdf.href);
+        }
+
+       
+16. select all elements that are empty?
+         Keyword : empty
+
+        <p>Paragraph 1</p>
+        <p></p>
+        <p>Paragraph 3</p>
+
+    JavaScript
+
+      let emptyParagraphs = document.querySelectorAll("p:empty");
+      for(var elements of emptyParagraphs){
+      console.log(elements.innerText);
+    }
+
+
+17. select all elements that we don't want?
+         Keyword : *:not()
+
+        <div>
+          <h1>Header 1</h1>
+          <h2>Header 2</h2>
+          <h3>Header 3</h3>
+          <h4>Header 4</h4>
+        </div>
+
+    JavaScript
+
+      let notMainHeader = document.querySelectorAll("div *:not(h1)");
+      for(var elements of notMainHeader){
+      console.log(elements.innerText);
+    }
+
+    Console
+   
+    "Header 2"
+    "Header 3"
+    "Header 4"
+
+
+18.  select lonely element types?
+      Keyword = :only-of-type
+
+      JavaScript
+
+      let lonelyParagraph = document.querySelectorAll("p:only-of-type");
+      for(var elements of lonelyParagraph){
+      console.log(elements.innerText);
+     }
+
+   Console
+  "Only child"
+
+
+19. Use of ~ instead of p + :
+       Keyword = (a ~ b)
+
+       + is used when we have to select a specific element.
+       ~ is used when we have to select multiple elements.
+
+        <h2>Ok</h2>
+        <p>Paragraph 1</p>
+        <p>Google</p>
+        <div>Hello</div>
+        <p>Paragraph 3</p>
+        <p>Hello man</p>
+        <p>Hello Buddy</p>
+
+        // Here we will select all the p elements after the div 
+
+        let use = document.querySelectorAll("div ~ p");
