@@ -8,20 +8,35 @@
     <title>Document</title>
 </head>
 
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div{
+        background-color: brown;
+        width: 100%;
+        margin: 10px;
+        height: 20vh;
+        text-align: center;
+    }
+    div.target{
+        background-color: pink;
+    }
+</style>
+
 <body>
 
-    <div>
-        <h1>Header 1</h1>
-        <h2>Header 2</h2>
-        <div>Header 3</div>
-        <h4>Header 4</h4>
-      </div>
+    
+    E-mail adress: <input type="text" id="inputField">
 
     <script>
-        let notElement = document.querySelectorAll("div *:not(h1)")
-        for(var ele of notElement){
-            console.log(ele.innerHTML);
-        }
+       
+        let element  = document.querySelector("#inputField");
+        element.setAttribute("type","email")
+
     </script>
    
 

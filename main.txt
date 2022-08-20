@@ -14,6 +14,10 @@
           console.log(anchorElement[i].innerHTML)
          }
 
+    NOTE-3 : <a></a> attribute ke elements ko [] inside rakhenge.
+             <a target="_blank">Anchor 2</a>
+             let elementsWithTargetBlank = document.querySelectorAll("[target=_blank]");
+
 
 1. Selecting class inside the class
         let elements = document.querySelectorAll(".parentClass > .child")
@@ -44,8 +48,8 @@
         <h1>Header 4</h1>
       </div>
 
-    let elements = document.querySelectorAll("p:first-child")
-    let elements = document.querySelectorAll("p:last-child")
+    let elements = document.querySelectorAll("h1:first-child")
+    let elements = document.querySelectorAll("h1:last-child")
 
 
 4. Selecting the element from the top and last
@@ -53,10 +57,10 @@
      from last keyword= :nth-last-child()
 
     <div>
-        <h1>Header 1</h1>
-        <h1>ok 2</h1>
-        <h1>Header 3</h1>
-        <h1>Header 4</h1>
+        <p>Header 1</p>
+        <p>ok 2</p>
+        <p>Header 3</p>
+        <p>Header 4</p>
       </div>
 
     let elements = document.querySelectorAll("p:nth-child(2)") // ok
@@ -64,7 +68,7 @@
 
 
 5. Selecting the multiple element from the given
-
+      Select all the "P" and "div"
         <h1>Header 1</h1>
         <div>ok 2</div>
         <p>Header 3</p>
@@ -111,8 +115,8 @@
 
 8. Use of ~ instead of + =>
 
-   + is used to select a specific element , but ~ is used to select muliple specific element because we don't want rewrite + + again.
    keyword = "~"
+   + is used to select a specific element , but ~ is used to select muliple specific element as don't want rewrite + + again.
    ex => Select all the p element after h2
 
       <div>
@@ -281,6 +285,9 @@
             console.log(pdf.href);
         }
 
+    for multiple :
+      let eneElement  = document.querySelectorAll("[href $= in] , [href $= com] ")
+
        
 16. select all elements that are empty?
          Keyword : empty
@@ -352,3 +359,88 @@
         // Here we will select all the p elements after the div 
 
         let use = document.querySelectorAll("div ~ p");
+
+
+/*******************************************Activation********************************************/
+
+1.  How to move an element up?
+
+    <div>Element 1</div>
+    <div>Element 2</div>
+    <div class="target">Element 3</div>
+    <div>Element 4</div>
+    <div>Element 5</div>
+
+    CSS :
+     
+     body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div{
+        background-color: brown;
+        width: 100%;
+        margin: 10px;
+        height: 20vh;
+        text-align: center;
+    }
+    div.target{
+        background-color: pink;
+    }
+
+   *** Java Script
+
+       let moveEle  = document.querySelector(".target");
+       
+       function moveUp(){
+        if(moveEle.previousElementSibling){
+            moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+         }
+       }
+    moveUp();
+
+
+  ***** Short hand JavaScript
+
+        let moveEle  = document.querySelector(".target");
+        moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+
+
+2.  How to move an element up multiple time ?
+
+     Description: Abhi hame elements ko multiple time move up karna hai , jaise previous mai ek step up hua abhi hm chahte h ek step se jyada up shift ho haye 2 ya 3 ya more -
+     Ex - 3 steps up (jini bar chahiye utni bar call karo.)
+
+     A**** let moveEle  = document.querySelector(".target");
+           if(moveEle.previousElementSibling){
+            moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+            moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+            moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+         }
+
+     B**** let moveEle  = document.querySelector(".target");       
+         function moveUp(){
+          if(moveEle.previousElementSibling){
+             moveEle.parentNode.insertBefore(moveEle , moveEle.previousElementSibling)
+          }
+        }
+        moveUp();
+        moveUp();
+        moveUp();
+      
+3. Remove child
+   for(var element of elements) {
+  element.parentNode.removeChild(element);
+}
+
+4. How to move an element Down ?
+    
+     A**** let moveEle  = document.querySelector(".target");
+
+           if (element.nextElementSibling) {
+            element.parentNode.insertBefore(element.nextElementSibling, element);
+          }
+
+    B**** function same as above
