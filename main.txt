@@ -363,6 +363,7 @@
 
 /*******************************************Activation********************************************/
 
+
 1.  How to move an element up?
 
     <div>Element 1</div>
@@ -429,11 +430,13 @@
         moveUp();
         moveUp();
         moveUp();
+
       
 3. Remove child
-   for(var element of elements) {
-  element.parentNode.removeChild(element);
+    for(var element of elements) {
+    element.parentNode.removeChild(element);
 }
+
 
 4. How to move an element Down ?
     
@@ -444,3 +447,98 @@
           }
 
     B**** function same as above
+
+
+
+/***************************************Condition*******************************************************/
+
+
+1. Input field ke based code run karna ho -
+ <input type="text" id="fname" />
+
+    <script>
+      let inputField = document.querySelector("#fname");
+      inputField.addEventListener("change", myFunction);
+      function myFunction() {
+      inputField.style.background ="#f00"
+
+
+2. run code based on the content of the text?
+   Context : jab kisi special cheej ki demand ki gayi ho texrt related.
+
+      <p>This is a bunch of text containing the word blue.</p>
+      <p>This is a bunch of text containing the word red.</p>
+      <p>This is a bunch of text containing the word blue.</p>
+
+      let paragraphs = document.querySelectorAll("p");
+
+      for (var paragraph of paragraphs) {
+      if (paragraph.innerText.includes("red")) {
+      paragraph.style.backgroundColor = "red";
+  }
+}  
+
+
+/***************************************Flickering*******************************************************/
+
+1. How to write an observer function?
+
+   (function () {
+    "use strict";
+     function observeAndRun(selector, callback) {
+     new MutationObserver(function () {
+       if (document.querySelector(selector)) {
+         callback();
+         this.disconnect();
+       }
+     }).observe(document, { childList: true, subtree: true });
+    }
+      observeAndRun("h1", function () {
+      document.querySelector("h1").innerHTML = "Test activated";
+    });
+  })();
+
+
+/***************************Important Notes of DOM Manipulation**************************/
+
+1. Append child
+
+<section id="parent_1">
+    Parent 1
+    <div id="child_1">child 1</div>
+    <div id="child_2">child 2</div>
+    <div id="child_3">child 3</div>
+ </section>
+
+<section id="parent_2">
+    Parent 2
+    <div id="child_4">child 4</div>
+    <div id="child_5">child 5</div>
+    <div id="child_6">child 6</div>
+</section>
+
+ There are 2 different section id : one and two
+   Task : Each section have 3 divs , we need to move 1st element of 2nd div over last element of 1st div.
+
+const parent_1 = document.getElementById("parent_1")
+const child_6 = document.getElementById("child_6")
+
+parent_1.appendChild(child_6)
+
+
+2. Insert Before / Parent Node
+   Task : Move element child_5 above child_3
+
+   <section id="parent_1">
+    <div id="child_1">child 1</div>
+    <div id="child_2">child 2</div>
+    <div id="child_3">child 3</div>
+    <div id="child_4">child 4</div>
+    <div id="child_5">child 5</div>
+    <div id="child_6">child 6</div>
+   </section>
+
+   const child_5 = document.getElementById("child_5")
+   const child_3 = document.getElementById("child_3")
+
+   child_5.parentNode.insertBefore(child_5,child_3)

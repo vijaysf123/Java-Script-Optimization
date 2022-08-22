@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-
-<style>
-    body{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    <style>
+      #parent_1{
+        background-color: #f2f2f2;
+        padding: 10px;
     }
-    div{
-        background-color: brown;
-        width: 100%;
-        margin: 10px;
-        height: 20vh;
-        text-align: center;
+    #parent_1 > div{
+        background-color: #fff;
+        padding: 10px;
     }
-    div.target{
-        background-color: pink;
+    #parent_2{
+        background-color: #f2f2f2;
+        margin-top: 20px;
+        padding: 10px;
     }
-</style>
+    #parent_2 > div{
+        background-color: #fff;
+        padding: 10px;
+    }
+    </style>
+  </head>
 
-<body>
+  <section id="parent_1">
+    <div id="child_1">child 1</div>
+    <div id="child_2">child 2</div>
+    <div id="child_3">child 3</div>
+    <div id="child_4">child 4</div>
+    <div id="child_5">child 5</div>
+    <div id="child_6">child 6</div>
+</section>
 
-    
-    E-mail adress: <input type="text" id="inputField">
+  <body>
 
-    <script>
-       
-        let element  = document.querySelector("#inputField");
-        element.setAttribute("type","email")
-
-    </script>
-   
-
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
