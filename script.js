@@ -1,4 +1,10 @@
-const child_5 = document.getElementById("child_5")
-const child_3 = document.getElementById("child_3")
+// let parent = document.getElementById("parent_1")
+// let child2 = document.getElementById("child_2")
 
-child_5.parentNode.insertBefore(child_5,child_3)
+// let elementClone = child2.cloneNode(true)
+// elementClone.innerText = "Child 7"
+// elementClone.setAttribute("id" , "child_2")
+// parent.appendChild(elementClone)
+
+let input = document.getElementById("inputField")
+input.setAttribute("placeholder", "Enter your email")
